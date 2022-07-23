@@ -1,6 +1,6 @@
-# picaptiveportal
+# Jellyfin (Media Server) picaptiveportal
 Offline Raspberry Pi Captive Portal / Physical Web Space inspired by Anyfesto Pi.
-Adapted to also include a JellyFin Server
+Adapted to also include a JellyFin Server to allow local streaming media in an offline environment (ie. camping, emergency, advertising, etc)
 
 wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/install.sh
 
