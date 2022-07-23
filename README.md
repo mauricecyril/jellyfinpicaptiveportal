@@ -1,13 +1,16 @@
 # picaptiveportal
 Offline Raspberry Pi Captive Portal / Physical Web Space inspired by Anyfesto Pi.
+Adapted to also include a JellyFin Server
 
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/install.sh
 
 sudo bash install.sh
 
 ## Requirements
 * Raspberry Pi Zero W, Raspberry Pi 3, or Raspberry Pi 2 with Redbear WifiHat
-* 16GB Micro SD Card
+* 16GB Micro SD Card (Or an SSD Drive with an SSD to USB Adaptor) (See https://jamesachambers.com/raspberry-pi-cheap-ssd-upgrade-30/)
+* Raspberry PI set to USB Bootable & SD Card with Bootcode.bin 
+* SSH Enabled on the Raspberry PI
 * Latest version of Raspbian Lite (Tested on Raspbian Stretch Lite)
 * A Windows, OSX or Linux machine to write the Raspbian Lite image and activate ssh and setup wifi
 * An internet connection
@@ -61,6 +64,15 @@ network={
 }
 ```
 
+### Step 6b (OPTIONAL)
+Open the /boot/config.txt and add the line:
+
+```
+program_usb_boot_mode=1
+```
+
+### Step 6c (Image the SSD with the Raspberry Pi OS Image, setup wifi, ssh, hostname etc)
+
 ### Step 7
 Unmount the SD Card and insert the card into a Raspberry Pi
 
@@ -72,7 +84,7 @@ If you're connecting to the Pi via SSH wait till your router registers the Pi as
 ### Step 9
 Login to the Pi and download the install script:
 ```shell
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/install.sh
 ```
 Run the script as super user (sudo):
 ```shell
@@ -81,8 +93,10 @@ sudo bash install.sh
 ### Step 10
 Once the script completes, reboot the Pi and you should see a wifi SSID called "picaptiveportal"
 
-## Credits
+## References and Cited Sources
 * https://github.com/tomhiggins/anyfesto
 * https://www.raspberrypi.org/forums/viewtopic.php?t=191252
 * https://www.raspberrypi.org/documentation/configuration/security.md
 * https://askubuntu.com/questions/580433/how-can-i-allow-ap-hotspot-in-ufw-ubuntu-14-04
+* https://jamesachambers.com/raspberry-pi-cheap-ssd-upgrade-30/
+* https://pimylifeup.com/raspberry-pi-jellyfin/
