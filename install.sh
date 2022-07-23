@@ -23,12 +23,34 @@ echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
-sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd git zip unzip tar bzip2 perl python python3 php-cgi avahi-daemon nano python3-django python3-flask
+sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd curl git zip unzip tar bzip2 perl python python3 php-cgi avahi-daemon nano python3-django python3-flask apt-transport-https lsb-release byobu
 
 sudo rm /bin/sh
 sudo ln /bin/bash /bin/sh
 sudo chmod a+rw /bin/sh
 cd ~
+
+
+# Install Jellyfin Server
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Installing Jellyfin Server"
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+
+echo "Setting Up Certificates"
+curl https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/jellyfin-archive-keyring.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/jellyfin-archive-keyring.gpg arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/debian $( lsb_release -c -s ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list
+echo "Certificates Setup Ready for Install"
+
+
+echo "Install Jellyfin"
+sudo apt-get -y update
+sudo apt-get -y install jellyfin
+
+echo "Jellyfin Installed"
+
+echo "Setting up jellyfin in video group to access GPU"
+sudo usermod -aG video jellyfin
+
 
 # Make config folder that will be used to store config files from https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles
 mkdir configs
@@ -117,6 +139,8 @@ sudo ufw allow dnsmasq
 sudo ufw allow dhclient
 #ufw allow domain
 
+# Update the firewall to allow port 8096 (Jellyfin port)
+sudo ufw allow 8096
 
 # Update the incoming to only allow SSH (22), HTTP (80), HTTPS (443)
 sudo ufw allow ssh
