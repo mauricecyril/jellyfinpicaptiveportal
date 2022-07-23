@@ -93,15 +93,15 @@ echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 echo "Setting Up The Network, Access Point and Captive Portal"
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 cd ~/configs
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/dhcpd.conf 
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/dnsmasq.conf
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hostapd
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hostapd.conf
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/interfaces
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/isc-dhcp-server
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/lighttpd.conf
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hosts
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hostname
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/dhcpd.conf 
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/dnsmasq.conf
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/hostapd
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/hostapd.conf
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/interfaces
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/isc-dhcp-server
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/lighttpd.conf
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/hosts
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles/hostname
 
 sudo chown root:root *
 sudo chmod a+rx *
