@@ -5,7 +5,7 @@
 # See original project: https://github.com/tomhiggins/anyfesto
 #
 # Run the following in the command shell
-# wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
+# wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/install.sh
 # bash install.sh
 
 # Install the Basic Packages and Infrastructure
@@ -24,12 +24,6 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd curl git zip unzip tar bzip2 perl python python3 php-cgi avahi-daemon nano python3-django python3-flask apt-transport-https lsb-release byobu
-
-sudo rm /bin/sh
-sudo ln /bin/bash /bin/sh
-sudo chmod a+rw /bin/sh
-cd ~
-
 
 # Install Jellyfin Server
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
@@ -52,7 +46,12 @@ echo "Setting up jellyfin in video group to access GPU"
 sudo usermod -aG video jellyfin
 
 
-# Make config folder that will be used to store config files from https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles
+sudo rm /bin/sh
+sudo ln /bin/bash /bin/sh
+sudo chmod a+rw /bin/sh
+cd ~
+
+# Make config folder that will be used to store config files from https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/configfiles
 mkdir configs
 
 # Setup the Directories and lighttpd 
@@ -61,17 +60,17 @@ echo "Setting Up the Directories and Lighttp Web Server"
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 
 # Create a "Content" folder in the home folder
-mkdir /home/pi/content
+mkdir ~/content
 
 # Link the content folder to the html folder
-sudo ln -s /home/pi/content /var/www/html/content   
+sudo ln -s ~/content /var/www/html/content   
 
 # Remove default index.html from /var/www/html
 cd /var/www/html
 sudo mv index.html index.backup
 
 # Download new index html
-sudo wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/html/index.html
+sudo wget https://raw.githubusercontent.com/mauricecyril/jellyfinpicaptiveportal/master/html/index.html
 
 # Download bootstrap and copy to /var/www/html folder
 cd ~
