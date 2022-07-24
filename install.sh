@@ -23,7 +23,7 @@ echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
-sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd curl git zip unzip tar bzip2 perl python python3 php-cgi avahi-daemon nano python3-django python3-flask apt-transport-https lsb-release byobu
+sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd curl git zip unzip tar bzip2 perl python python3 php-cgi avahi-daemon nano python3-django python3-flask apt-transport-https lsb-release byobu acl
 
 # Install Jellyfin Server
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
@@ -45,7 +45,16 @@ echo "Jellyfin Installed"
 echo "Setting up jellyfin in video group to access GPU"
 sudo usermod -aG video jellyfin
 
+echo "Create Content Folder On Root Directory for Jellyfin Media and Grant Access"
+sudo mkdir /content
+sudo setfacl -R -m u:jellyfin:rx /content/
+# Later you may also want to make this folder accessible to your primary user account
+# example: sudo setfacl -R -m u:[USERID]:rwx /content/
 
+# Install Captive Portal
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Installing Captive Portal Components"
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 sudo rm /bin/sh
 sudo ln /bin/bash /bin/sh
 sudo chmod a+rw /bin/sh
