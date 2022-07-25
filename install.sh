@@ -23,7 +23,7 @@ echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
-sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd curl git zip unzip tar bzip2 perl python python3 php-cgi avahi-daemon nano python3-django python3-flask apt-transport-https lsb-release byobu acl
+sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd curl git zip unzip tar bzip2 perl gnupg python python3 php-cgi avahi-daemon nano python3-django python3-flask apt-transport-https lsb-release byobu acl
 
 # Install Jellyfin Server
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
@@ -31,8 +31,8 @@ echo "Installing Jellyfin Server"
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 
 echo "Setting Up Certificates"
-curl https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/jellyfin-archive-keyring.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/jellyfin-archive-keyring.gpg arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/debian $( lsb_release -c -s ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list
+curl -fsSL https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/jellyfin.gpg
+echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release ) $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list
 echo "Certificates Setup Ready for Install"
 
 
